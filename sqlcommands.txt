@@ -1,0 +1,46 @@
+create database bank;
+
+create table Accounts (
+	account_id serial,
+	firstName varchar(255),
+	lastName varchar(255),
+	primary key(account_id)
+);
+
+create table Checkings (
+	account_id int not null,
+	checkingsBalance decimal(10,2),
+	primary key(account_id),
+	foreign key(account_id) references Accounts(account_id)
+);
+
+create table Savings (
+	account_id int not null,
+	savingsBalance decimal(10,2),
+	primary key(account_id),
+	foreign key(account_id) references Accounts(account_id)
+);
+
+create table transactions(
+	transaction_id serial primary key,
+	account_id int not null,
+	transaction_date date,
+	transaction_time time,
+	summary varchar(255)
+);
+
+create table Login(
+	login_id serial,
+	account_id int not null,
+	username varchar(64),
+	pword varchar(664),
+	primary key(login_id),
+	foreign key(account_id) references accounts(account_id)
+);
+
+// Maven commands ran
+1. mvn validate
+2. mvn compile
+3. mvn test
+4. mvn package
+5. mvn install
